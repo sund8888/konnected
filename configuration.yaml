@@ -1,0 +1,95 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+
+# Text to speech
+tts:
+  - platform: google_translate
+  
+# Discover some devices automatically
+discovery:
+
+alarm_control_panel:
+  - platform: manual_mqtt
+    state_topic: home/alarm
+    command_topic: home/alarm/set
+    trigger_time: 300
+    disarmed:
+      trigger_time: 0
+    armed_home:
+      delay_time: 0
+      pending_time: 0
+    armed_away:
+      delay_time: 60
+      pending_time: 30
+    triggered:
+      pending_time: 0
+    
+konnected:
+  access_token: qjfyltsiizxzuvkr
+  devices:
+    - id: 840d8e8d1cea
+      binary_sensors:
+        - zone: 1
+          type: vibration
+          name: 'Glass - 8d1cea'
+        - zone: 2
+          type: window
+          name: 'Office Window'
+        - zone: 3
+          type: door
+          name: 'Garage Door'
+        - zone: 4
+          type: door
+          name: 'Deck Door'
+        - zone: 5
+          type: door
+          name: 'Mud Exterior Door'
+    - id: 840d8e9654dc
+      binary_sensors:
+        - zone: 2
+          type: motion
+          name: 'Family Motion'
+        - zone: 3
+          type: vibration
+          name: 'Glass - 9654dc'
+        - zone: 4
+          type: door
+          name: 'Front Door'
+        - zone: 5
+          type: window
+          name: 'Breakfast Window'
+        - zone: 6
+          type: window
+          name: 'Family Window'
+      switches:
+        - zone: out
+          name: 'Chime'
+    - id: 840d8e8cf7a2
+      binary_sensors:
+        - zone: 1
+          type: vibration
+          name: 'Glass - 8cf7a2'
+        - zone: 2
+          type: motion
+          name: 'Front Motion'
+        - zone: 3
+          type: window
+          name: 'Dining Window'
+        - zone: 4
+          type: door
+          name: 'Mud Door'
+        - zone: 5
+          type: window
+          name: 'Living Window'
+      switches:
+        - zone: out
+          name: 'Siren'
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml

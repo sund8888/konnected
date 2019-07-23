@@ -1,0 +1,121 @@
+- alias: 'Trigger alarm while armed away'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.garage_door
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.deck_door
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.glass
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.office_window
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.mud_exterior_door
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.office_window
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.family_window
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.glass_2
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.breakfast_window
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.family_motion
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.front_door
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.mud_door
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.living_window
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.glass_3
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.front_motion
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.dining_window
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: alarm_control_panel.ha_alarm
+      state: armed_away
+  action:
+    - service: alarm_control_panel.alarm_trigger
+      entity_id: alarm_control_panel.ha_alarm
+
+- alias: 'Trigger alarm while armed home'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.garage_door
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.deck_door
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.glass
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.office_window
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.mud_exterior_door
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.office_window
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.family_window
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.glass_2
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.breakfast_window
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.front_door
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.mud_door
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.living_window
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.glass_3
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.dining_window
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: alarm_control_panel.ha_alarm
+      state: armed_home
+  action:
+    - service: alarm_control_panel.alarm_trigger
+      entity_id: alarm_control_panel.ha_alarm
+      
+- alias: Alarm Triggered
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.alarm
+      to: 'triggered'
+  action:
+    - service: notify.notify
+      data:
+        message: "Alarm Triggerred!"
+    - service: switch.turn_on
+      entity_id: switch.siren_hallway_north
