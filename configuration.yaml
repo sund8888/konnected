@@ -14,9 +14,9 @@ tts:
 discovery:
 
 alarm_control_panel:
-  - platform: manual_mqtt
-    state_topic: home/alarm
-    command_topic: home/alarm/set
+  - platform: manual
+    name: Home Alarm
+    code: 1234
     trigger_time: 300
     disarmed:
       trigger_time: 0
