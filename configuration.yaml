@@ -14,9 +14,9 @@ tts:
 discovery:
 
 alarm_control_panel:
-  - platform: manual
-    name: Home Alarm
-    code: 1234
+  - platform: manual_mqtt
+    state_topic: home/alarm
+    command_topic: home/alarm/set
     trigger_time: 300
     disarmed:
       trigger_time: 0
@@ -68,7 +68,7 @@ konnected:
           name: 'Family Window'
       switches:
         - zone: out
-          name: 'Chime'
+          name: 'Siren Hallway North'
     - id: 840d8e8cf7a2
       binary_sensors:
         - zone: 1
@@ -88,7 +88,7 @@ konnected:
           name: 'Living Window'
       switches:
         - zone: out
-          name: 'Siren'
+          name: 'Siren Hallway South'
 
 group: !include groups.yaml
 automation: !include automations.yaml

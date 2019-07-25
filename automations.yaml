@@ -51,11 +51,10 @@
       entity_id: alarm_control_panel.ha_alarm
       
 - alias: 'Send notification when alarm triggered'
-    trigger:
+  trigger:
       - platform: state
         entity_id: alarm_control_panel.ha_alarm
         to: 'triggered'
-    action:
-      - service: notify.notify
-        data:
-          message: "ALARM! The alarm has been triggered"      
+  action:
+      - service: switch.turn_on
+        entity_id: switch.siren_hallway_north      
