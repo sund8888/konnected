@@ -50,11 +50,20 @@
     - service: alarm_control_panel.alarm_trigger
       entity_id: alarm_control_panel.ha_alarm
       
-- alias: 'Send notification when alarm triggered'
+- alias: 'Sound siren when alarm triggered'
   trigger:
       - platform: state
         entity_id: alarm_control_panel.ha_alarm
         to: 'triggered'
   action:
       - service: switch.turn_on
-        entity_id: switch.siren_hallway_north      
+        entity_id: switch.siren_hallway_north   
+
+- alias: 'Disarmed Off'
+  trigger:
+      - platform: state
+        entity_id: alarm_control_panel.home_alarm
+        to: 'disarmed'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.siren_hallway_north

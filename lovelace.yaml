@@ -1,0 +1,36 @@
+title: Home
+views:
+  - badges:
+      - binary_sensor.office_window
+      - binary_sensor.deck_door
+      - binary_sensor.mud_exterior_door
+      - binary_sensor.glass
+      - binary_sensor.garage_door
+      - binary_sensor.family_window
+      - binary_sensor.glass_2
+      - binary_sensor.front_door
+      - binary_sensor.breakfast_window
+      - binary_sensor.family_motion
+      - binary_sensor.dining_window
+      - binary_sensor.mud_door
+      - binary_sensor.glass_3
+      - binary_sensor.living_window
+      - binary_sensor.front_motion
+    cards:
+      - entity: alarm_control_panel.home_alarm
+        type: alarm-panel
+      - entities:
+          - switch.siren_hallway_north
+          - switch.siren_hallway_south
+        title: Switch
+        type: entities
+      - entities:
+          - automation.disarmed_off
+          - automation.trigger_alarm_while_armed_home
+          - automation.sound_siren_when_alarm_triggered
+        title: Automation
+        type: entities
+      - entity: weather.home
+        type: weather-forecast
+    path: default_view
+    title: Home
